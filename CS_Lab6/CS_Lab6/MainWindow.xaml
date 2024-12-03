@@ -1,0 +1,33 @@
+﻿<Window x:Class="CS_Lab6.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CS_Lab6"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="readDatabase" Content="Считать базу данных" HorizontalAlignment="Left" Margin="50,34,0,0" VerticalAlignment="Top" Click="readDatabase_Click"/>
+        <Label x:Name="MessageLabel" Content="" HorizontalAlignment="Left" Margin="240,36,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="WorksheetsNames" HorizontalAlignment="Left" Margin="650,22,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0" SelectionChanged="WorksheetsNames_SelectionChanged">
+            <ComboBoxItem Content="Счета"/>
+            <ComboBoxItem Content="Курс валют"/>
+            <ComboBoxItem Content="Поступления"/>
+        </ComboBox>
+        <Button x:Name="ShowWorksheet" Content="Показать таблицу" HorizontalAlignment="Left" Margin="50,94,0,0" VerticalAlignment="Top" Click="ShowWorksheet_Click"/>
+        <TextBox x:Name="startIndexTextBox" HorizontalAlignment="Left" Margin="165,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Text="0"/>
+        <TextBox x:Name="RowsCountTextBox" HorizontalAlignment="Left" Margin="200,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Text="10"/>
+        <Button x:Name="delItemButton" Content="Удалить Элемент" HorizontalAlignment="Left" Margin="50,129,0,0" VerticalAlignment="Top" Click="delItemButton_Click"/>
+        <TextBox x:Name="ID_forDel" HorizontalAlignment="Left" Margin="165,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="20"/>
+        <Button x:Name="CorrectElemButton" Content="Корректировать Элемент" HorizontalAlignment="Left" Margin="50,164,0,0" VerticalAlignment="Top" Click="CorrectElemButton_Click"/>
+        <ComboBox x:Name="ColoumsNamesComboBox" HorizontalAlignment="Left" Margin="210,163,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="CorrectIDTextBox" HorizontalAlignment="Left" Margin="345,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="20"/>
+        <TextBox x:Name="rawItemTextBox" HorizontalAlignment="Left" Margin="380,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95"/>
+        <Button x:Name="AddElemButton" Content="Добавить Элемент" HorizontalAlignment="Left" Margin="50,202,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.505,0.603" Click="AddElemButton_Click"/>
+        <TextBox x:Name="AddTextBox1" HorizontalAlignment="Left" Margin="165,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="85"/>
+        <TextBox x:Name="AddTextBox2" HorizontalAlignment="Left" Margin="255,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="AddTextBox3" HorizontalAlignment="Left" Margin="345,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="AddTextBox4" HorizontalAlignment="Left" Margin="440,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
+        <TextBox x:Name="AddTextBox5" HorizontalAlignment="Left" Margin="535,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95"/>
+    </Grid>
+</Window>
