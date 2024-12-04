@@ -1,0 +1,9 @@
+05.12.2024 2:13:03 Clicked NewFileButton
+05.12.2024 2:13:03 Try to read Excel file
+05.12.2024 2:13:07 Successful Data Read
+05.12.2024 2:13:10 ShowWorksheet was Clicked
+05.12.2024 2:13:10 Worksheet was written
+05.12.2024 2:13:13 ShowWorksheet was Clicked
+05.12.2024 2:13:13 Worksheet was written
+05.12.2024 2:13:31 Clicked Close Window
+05.12.2024 2:13:31 Window is closed

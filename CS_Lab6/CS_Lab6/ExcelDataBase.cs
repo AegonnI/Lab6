@@ -74,6 +74,67 @@ namespace CS_Lab6
             }
         }
 
+        public string HighestAccruedAccountHolder()
+        {
+            Dictionary<int, double> HolderAnSumm = accruals
+                        .GroupBy(item => item.Value.accountID)
+                        .ToDictionary(
+                            group => group.Key,
+                            group => group.Sum(item => item.Value.summ * exchangeRates[item.Value.currencyID].exchangeRate));          
+            
+            return new string(accounts[HolderAnSumm
+                        .OrderByDescending(x => x.Value)
+                        .First().Key].fullName
+                            .TakeWhile(s => s != ' ')
+                            .ToArray())
+                            .ToUpper() + " " +
+                         HolderAnSumm
+                            .OrderByDescending(x => x.Value)
+                            .First().Value;
+        }
+
+        public string TheMostLostAccountHolder()
+        {
+            Dictionary<int, double> HolderAnSumm = accruals
+                        .GroupBy(item => item.Value.accountID)
+                        .ToDictionary(
+                            group => group.Key,
+                            group => group.Sum(item => item.Value.summ * exchangeRates[item.Value.currencyID].exchangeRate));
+
+            return new string(accounts[HolderAnSumm
+                        .OrderBy(x => x.Value)
+                        .First().Key].fullName
+                            .TakeWhile(s => s != ' ')
+                            .ToArray())
+                            .ToUpper() 
+                            + " " +
+                         HolderAnSumm
+                            .OrderBy(x => x.Value)
+                            .First().Value;
+        }
+
+        public string IncomeCurrencies()
+        {
+            return string.Join("\n", accruals
+                .GroupBy(item => item.Value.currencyID)
+                .ToDictionary(
+                    group => group.Key,
+                    group => group.Sum(item => item.Value.summ * exchangeRates[item.Value.currencyID].exchangeRate)               )
+                .Select(x => exchangeRates[x.Key].letterCode + " " + x.Value.ToString())
+                .ToList());
+        }
+
+        public string CountAccrualsForAllCur()
+        {
+            return string.Join("\n", accruals
+                .GroupBy(item => item.Value.currencyID)
+                .ToDictionary(
+                    group => group.Key,
+                    group => group.Sum(item => 1))
+                .Select(x => x.Key.ToString() + " " + x.Value.ToString())
+                .ToList());
+        }
+
         public static string ShowDataBase<T>(Dictionary<int, T> dict, int startIndex,int rowsCount) where T : class
         {
             string result = "";

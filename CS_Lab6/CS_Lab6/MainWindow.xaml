@@ -5,29 +5,85 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CS_Lab6"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Closing="DataWindow_Closing"
+        Title="Lab6" Height="550" Width="800" MinHeight="550">
     <Grid>
-        <Button x:Name="readDatabase" Content="Считать базу данных" HorizontalAlignment="Left" Margin="50,34,0,0" VerticalAlignment="Top" Click="readDatabase_Click"/>
-        <Label x:Name="MessageLabel" Content="" HorizontalAlignment="Left" Margin="240,36,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="WorksheetsNames" HorizontalAlignment="Left" Margin="650,22,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0" SelectionChanged="WorksheetsNames_SelectionChanged">
+        <Label x:Name="MessageLabel" Content="a" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom"/>
+        <ComboBox x:Name="WorksheetsNames" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="110" SelectionChanged="WorksheetsNames_SelectionChanged">
             <ComboBoxItem Content="Счета"/>
             <ComboBoxItem Content="Курс валют"/>
             <ComboBoxItem Content="Поступления"/>
         </ComboBox>
-        <Button x:Name="ShowWorksheet" Content="Показать таблицу" HorizontalAlignment="Left" Margin="50,94,0,0" VerticalAlignment="Top" Click="ShowWorksheet_Click"/>
-        <TextBox x:Name="startIndexTextBox" HorizontalAlignment="Left" Margin="165,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Text="0"/>
-        <TextBox x:Name="RowsCountTextBox" HorizontalAlignment="Left" Margin="200,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Text="10"/>
-        <Button x:Name="delItemButton" Content="Удалить Элемент" HorizontalAlignment="Left" Margin="50,129,0,0" VerticalAlignment="Top" Click="delItemButton_Click"/>
-        <TextBox x:Name="ID_forDel" HorizontalAlignment="Left" Margin="165,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="20"/>
-        <Button x:Name="CorrectElemButton" Content="Корректировать Элемент" HorizontalAlignment="Left" Margin="50,164,0,0" VerticalAlignment="Top" Click="CorrectElemButton_Click"/>
-        <ComboBox x:Name="ColoumsNamesComboBox" HorizontalAlignment="Left" Margin="210,163,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="CorrectIDTextBox" HorizontalAlignment="Left" Margin="345,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="20"/>
-        <TextBox x:Name="rawItemTextBox" HorizontalAlignment="Left" Margin="380,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95"/>
-        <Button x:Name="AddElemButton" Content="Добавить Элемент" HorizontalAlignment="Left" Margin="50,202,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.505,0.603" Click="AddElemButton_Click"/>
-        <TextBox x:Name="AddTextBox1" HorizontalAlignment="Left" Margin="165,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="85"/>
-        <TextBox x:Name="AddTextBox2" HorizontalAlignment="Left" Margin="255,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
-        <TextBox x:Name="AddTextBox3" HorizontalAlignment="Left" Margin="345,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
-        <TextBox x:Name="AddTextBox4" HorizontalAlignment="Left" Margin="440,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
-        <TextBox x:Name="AddTextBox5" HorizontalAlignment="Left" Margin="535,204,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="95"/>
+        <Button x:Name="ShowWorksheet" Content="Показать таблицу" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Click="ShowWorksheet_Click"/>
+        <TextBox x:Name="startIndexTextBox" HorizontalAlignment="Left" Margin="210,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="0" MaxLength="5" MaxLines="1"/>
+        <TextBox x:Name="RowsCountTextBox" HorizontalAlignment="Left" Margin="210,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="10" Height="17.96" MaxLength="5" MaxLines="1"/>
+        <Button x:Name="delItemButton" Content="Удалить Элемент" HorizontalAlignment="Left" Margin="10,130,0,0" VerticalAlignment="Top" Click="delItemButton_Click"/>
+        <TextBox x:Name="ID_forDel" HorizontalAlignment="Left" Margin="140,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1"/>
+        <Button x:Name="CorrectElemButton" Content="Корректировать Элемент" HorizontalAlignment="Left" Margin="10,190,0,0" VerticalAlignment="Top" Click="CorrectElemButton_Click"/>
+        
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="LeftLabel5" Content="Столбец:" Grid.Column="0" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="LeftLabel6" Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="LeftLabel7" Content="Новый Элемент:" Grid.Column="0" HorizontalAlignment="Left" Margin="10,280,0,0" VerticalAlignment="Top"/>
+
+            <ComboBox x:Name="ColoumsNamesComboBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="CorrectIDTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,250,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1" MaxLength="5"/>
+            <TextBox x:Name="rawItemTextBox" Grid.Column="1" HorizontalAlignment="Left" Margin="10,280,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1"/>
+        </Grid>
+        
+
+        <Button x:Name="AddElemButton" Content="Добавить Элемент"  HorizontalAlignment="Left" Margin="10,310,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.516,0.603" Click="AddElemButton_Click"/>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="LeftLabel8" Content="" Grid.Column="0" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="LeftLabel9" Content="" Grid.Column="0" HorizontalAlignment="Left" Margin="10,370,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="LeftLabel10" Content="" Grid.Column="0" HorizontalAlignment="Left" Margin="10,400,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="LeftLabel11" Content="" Grid.Column="0" HorizontalAlignment="Left" Margin="10,430,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="LeftLabel12" Content="" Grid.Column="0" HorizontalAlignment="Left" Margin="10,460,0,0" VerticalAlignment="Top"/>
+
+            <TextBox x:Name="AddTextBox1" Grid.Column="1" HorizontalAlignment="Left" Margin="10,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1"/>
+            <TextBox x:Name="AddTextBox2" Grid.Column="1" HorizontalAlignment="Left" Margin="10,370,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1"/>
+            <TextBox x:Name="AddTextBox3" Grid.Column="1" HorizontalAlignment="Left" Margin="10,400,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1"/>
+            <TextBox x:Name="AddTextBox4" Grid.Column="1" HorizontalAlignment="Left" Margin="10,430,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1"/>
+            <TextBox x:Name="AddTextBox5" Grid.Column="1" HorizontalAlignment="Left" Margin="10,460,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1"/>
+        </Grid>
+
+        <Label x:Name="referenceLabel" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,10,0"/>
+
+        <Button x:Name="RequestButton1" Content="Запрос 1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="RequestButton1_Click" Margin="0,0,10,100"/>
+        <Button x:Name="RequestButton2" Content="Запрос 2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="RequestButton2_Click" Margin="0,0,10,70"/>
+        <Button x:Name="RequestButton3" Content="Запрос 3" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="RequestButton3_Click" Margin="0,0,10,40"/>
+        <Button x:Name="RequestButton4" Content="Запрос 4" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="RequestButton4_Click" Margin="0,0,10,10"/>
+        <Label x:Name="OutputLabel" Content="" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0" ScrollViewer.CanContentScroll="True"/>
+        <TextBox x:Name="OutputTextBox" Text="" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0" IsReadOnlyCaretVisible="True" BorderBrush="{x:Null}" Background="{x:Null}" SelectionBrush="{x:Null}" IsReadOnly="True"/>
+        
+        <Grid HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="NewFileButton" Grid.Column="0" Content="В новый файл" HorizontalAlignment="Right" Margin="0,79,5,0" VerticalAlignment="Top" Click="NewFileButton_Click"/>
+            <Button x:Name="OldFileButton" Grid.Column="1" Content="В старый файл" Margin="5,79,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="OldFileButton_Click"/>
+            <Label x:Name="QuestionLabel1" Content="Куда вести протоколирование?" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        </Grid>
+        <Label x:Name="LeftLabel1" Content="Действия:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LeftLabel2" Content="Количество пропускаемых строк:" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LeftLabel3" Content="Количество выводимых строк:" HorizontalAlignment="Left" Margin="10,96,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="Reset" Content="Сбросить значения" HorizontalAlignment="Left" Margin="120,40,0,0" VerticalAlignment="Top" Click="Reset_Click"/>
+        <Label x:Name="LeftLabel4" Content="ID удаляемой строки:" HorizontalAlignment="Left" Margin="9,160,0,0" VerticalAlignment="Top"/>
+
+
+
     </Grid>
 </Window>
