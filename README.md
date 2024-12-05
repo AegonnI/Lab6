@@ -224,7 +224,7 @@ public ExcelDataBase(string pathXLS, string pathXLSX)
 }
 ```
 
-## Метод
+## Методы
 ```c#
 public void Save(string pathXLSX)
 
