@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Wordprocessing;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,13 +9,24 @@ namespace CS_Lab6
 {
     internal class ExcelDataBase
     {
-        Dictionary<int, Account> accounts { get; }
-        Dictionary<int, ExchangeRate> exchangeRates { get; }
-        Dictionary<int, Accrual> accruals { get; }
+        public Dictionary<int, Account> accounts { get; }
+        public Dictionary<int, ExchangeRate> exchangeRates { get; }
+        public Dictionary<int, Accrual> accruals { get; }
 
-        List<string> accountNames { get; }
-        List<string> exchangeRateNames { get; }
-        List<string> accrualNames { get; }
+        public List<string> accountNames { get; }
+        public List<string> exchangeRateNames { get; }
+        public List<string> accrualNames { get; }
+
+        public ExcelDataBase()
+        {
+            accounts = new Dictionary<int, Account>();
+            exchangeRateNames = new List<string>();
+            accruals = new Dictionary<int, Accrual>();
+
+            accrualNames = new List<string>();
+            exchangeRateNames = new List<string>();
+            accrualNames = new List<string>();
+        }
 
         public ExcelDataBase(string pathXLS, string pathXLSX)
         {
@@ -66,6 +78,86 @@ namespace CS_Lab6
                                               row => (int)row.Cell(1).Value.GetNumber(),
                                               row => new Accrual((int)row.Cell(2).Value.GetNumber(), (int)row.Cell(3).Value.GetNumber(), row.Cell(4).GetDateTime(), row.Cell(5).Value.GetNumber())
                                           );
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void Save(string pathXLSX)
+        {
+            try
+            {
+                using (XLWorkbook wb = new XLWorkbook(pathXLSX))
+                {
+                    
+                    wb.Worksheet(1).Delete();
+                    wb.Worksheet(1).Delete();
+                    wb.Worksheet(1).Delete();
+
+                    IXLWorksheet ws = wb.Worksheets.Add("Счета");
+
+                    for (int i = 0; i < accountNames.Count; i++)
+                    {
+                        ws.Cell(1, i+1).Value = accountNames[i];
+                    }
+
+                    {
+                        int i = 2;
+                        foreach (var item in accounts)
+                        {
+                            ws.Cell(i, 1).Value = item.Key;
+                            ws.Cell(i, 2).Value = item.Value.fullName;
+                            ws.Cell(i, 3).Value = item.Value.date;
+                            i++;
+                        }
+                    }
+
+                    ws = wb.Worksheets.Add("Курс валют");
+
+                    for (int i = 0; i < exchangeRateNames.Count; i++)
+                    {
+                        ws.Cell(1, i + 1).Value = exchangeRateNames[i];
+                    }
+
+                    {
+                        int i = 2;
+                        foreach (var item in exchangeRates)
+                        {
+                            ws.Cell(i, 1).Value = item.Key;
+                            ws.Cell(i, 2).Value = item.Value.letterCode;
+                            ws.Cell(i, 3).Value = item.Value.exchangeRate;
+                            ws.Cell(i, 4).Value = item.Value.fullName;
+                            i++;
+                        }
+                    }
+
+                    ws = wb.Worksheets.Add("Поступления");
+
+                    for (int i = 0; i < accrualNames.Count; i++)
+                    {
+                        ws.Cell(1, i + 1).Value = accrualNames[i];
+                    }
+
+                    {
+                        int i = 2;
+                        foreach (var item in accruals)
+                        {
+                            ws.Cell(i, 1).Value = item.Key;
+                            ws.Cell(i, 2).Value = item.Value.accountID;
+                            ws.Cell(i, 3).Value = item.Value.currencyID;
+                            ws.Cell(i, 4).Value = item.Value.date;
+                            ws.Cell(i, 5).Value = item.Value.summ;
+                            i++;
+                        }
+                    }
+
+                    //wb.AddWorksheet(accounts as IXLWorksheet);
+                    //wb.AddWorksheet(exchangeRates as IXLWorksheet);
+                    //wb.AddWorksheet(accruals as IXLWorksheet);
+                    wb.Save();
                 }
             }
             catch (Exception ex)
@@ -135,7 +227,7 @@ namespace CS_Lab6
                 .ToList());
         }
 
-        public static string ShowDataBase<T>(Dictionary<int, T> dict, int startIndex,int rowsCount) where T : class
+        public static string ToString<T>(Dictionary<int, T> dict, int startIndex,int rowsCount) where T : class
         {
             string result = "";
             int i = 0;
@@ -158,21 +250,21 @@ namespace CS_Lab6
             return result + $"Всего {dict.Count} строк";
         }
 
-        public void DelElemInAccounts(int key)
+        public void DelElemInAccounts(int ID)
         {
-            try { accounts.Remove(key); }
+            try { accounts.Remove(ID); }
             catch (Exception ex) { throw ex; }
         }
 
-        public void DelElemInExchangeRates(int key)
+        public void DelElemInExchangeRates(int ID)
         {
-            try { exchangeRates.Remove(key); }
+            try { exchangeRates.Remove(ID); }
             catch (Exception ex) { throw ex; }
         }
 
-        public void DelElemInAccrual(int key)
+        public void DelElemInAccrual(int ID)
         {
-            try { accruals.Remove(key); }
+            try { accruals.Remove(ID); }
             catch (Exception ex) { throw ex; }
         }
 
@@ -241,13 +333,5 @@ namespace CS_Lab6
         public void AddElemInExchangeRates(int ID, ExchangeRate exchangeRate) { exchangeRates[ID] = exchangeRate; }
 
         public void AddElemInAccrual(int ID, Accrual accrual) { accruals[ID] = accrual; }
-
-        public Dictionary<int, Account> GetAccount() { return accounts; }
-        public Dictionary<int, ExchangeRate> GetExchangeRate() { return exchangeRates; }
-        public Dictionary<int, Accrual> GetAccrual() { return accruals; }
-
-        public List<string> GetAccountNames() { return accountNames; }
-        public List<string> GetExchangeRateNames() { return exchangeRateNames; }
-        public List<string> GetAccrualNames() { return accrualNames; }
     }
 }

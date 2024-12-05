@@ -8,12 +8,20 @@
         Closing="DataWindow_Closing"
         Title="Lab6" Height="550" Width="800" MinHeight="550">
     <Grid>
-        <Label x:Name="MessageLabel" Content="a" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom"/>
-        <ComboBox x:Name="WorksheetsNames" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="110" SelectionChanged="WorksheetsNames_SelectionChanged">
-            <ComboBoxItem Content="Счета"/>
-            <ComboBoxItem Content="Курс валют"/>
-            <ComboBoxItem Content="Поступления"/>
-        </ComboBox>
+        <Grid HorizontalAlignment="Right">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="MessageLabel" Content="" Grid.Column="0" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top"/>
+            <ComboBox x:Name="WorksheetsNames" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" Width="110" SelectionChanged="WorksheetsNames_SelectionChanged">
+                <ComboBoxItem Content="Счета"/>
+                <ComboBoxItem Content="Курс валют"/>
+                <ComboBoxItem Content="Поступления"/>
+            </ComboBox>
+        </Grid>
+        
         <Button x:Name="ShowWorksheet" Content="Показать таблицу" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Click="ShowWorksheet_Click"/>
         <TextBox x:Name="startIndexTextBox" HorizontalAlignment="Left" Margin="210,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="0" MaxLength="5" MaxLines="1"/>
         <TextBox x:Name="RowsCountTextBox" HorizontalAlignment="Left" Margin="210,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="10" Height="17.96" MaxLength="5" MaxLines="1"/>
@@ -57,8 +65,10 @@
             <TextBox x:Name="AddTextBox3" Grid.Column="1" HorizontalAlignment="Left" Margin="10,400,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1"/>
             <TextBox x:Name="AddTextBox4" Grid.Column="1" HorizontalAlignment="Left" Margin="10,430,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1"/>
             <TextBox x:Name="AddTextBox5" Grid.Column="1" HorizontalAlignment="Left" Margin="10,460,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxLines="1"/>
+            
         </Grid>
 
+        <Button x:Name="SaveButton" Grid.Column="1" Content="Сохранить" HorizontalAlignment="Left" Margin="10,490,0,0" VerticalAlignment="Top" Click="SaveButton_Click"/>
         <Label x:Name="referenceLabel" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,50,10,0"/>
 
         <Button x:Name="RequestButton1" Content="Запрос 1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="RequestButton1_Click" Margin="0,0,10,100"/>

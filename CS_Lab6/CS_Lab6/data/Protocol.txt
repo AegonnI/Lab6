@@ -1,9 +1,66 @@
-05.12.2024 2:13:03 Clicked NewFileButton
-05.12.2024 2:13:03 Try to read Excel file
-05.12.2024 2:13:07 Successful Data Read
-05.12.2024 2:13:10 ShowWorksheet was Clicked
-05.12.2024 2:13:10 Worksheet was written
-05.12.2024 2:13:13 ShowWorksheet was Clicked
-05.12.2024 2:13:13 Worksheet was written
-05.12.2024 2:13:31 Clicked Close Window
-05.12.2024 2:13:31 Window is closed
+05.12.2024 5:02:58 Clicked NewFileButton
+05.12.2024 5:02:58 Try to read Excel file
+05.12.2024 5:03:05 Successful Data Read
+05.12.2024 5:05:28 try to change selection in WorksheetsNames
+05.12.2024 5:05:28 Seccessful change selection in WorksheetsNames
+05.12.2024 5:05:32 ShowWorksheet was Clicked
+05.12.2024 5:05:32 Worksheet was written
+05.12.2024 5:06:21 delItemButton was clicked
+05.12.2024 5:06:21 Seccessful delete element
+05.12.2024 5:06:21 Worksheet was written
+05.12.2024 5:07:45 CorrectElemButton was clicked
+05.12.2024 5:07:45 Seccessful Correct
+05.12.2024 5:08:49 try to change selection in WorksheetsNames
+05.12.2024 5:08:49 Seccessful change selection in WorksheetsNames
+05.12.2024 5:08:50 ShowWorksheet was Clicked
+05.12.2024 5:08:50 Worksheet was written
+05.12.2024 5:08:55 Reset was clicked
+05.12.2024 5:08:55 Seccessful reset
+05.12.2024 5:09:07 ShowWorksheet was Clicked
+05.12.2024 5:09:07 Worksheet was written
+05.12.2024 5:09:12 try to change selection in WorksheetsNames
+05.12.2024 5:09:12 Seccessful change selection in WorksheetsNames
+05.12.2024 5:09:13 ShowWorksheet was Clicked
+05.12.2024 5:09:13 Worksheet was written
+05.12.2024 5:09:23 try to change selection in WorksheetsNames
+05.12.2024 5:09:23 Seccessful change selection in WorksheetsNames
+05.12.2024 5:09:23 ShowWorksheet was Clicked
+05.12.2024 5:09:23 Worksheet was written
+05.12.2024 5:09:55 ShowWorksheet was Clicked
+05.12.2024 5:09:55 Worksheet was written
+05.12.2024 5:10:06 ShowWorksheet was Clicked
+05.12.2024 5:10:06 Worksheet was written
+05.12.2024 5:11:15 ShowWorksheet was Clicked
+05.12.2024 5:11:15 Worksheet was written
+05.12.2024 5:11:25 ShowWorksheet was Clicked
+05.12.2024 5:11:25 Worksheet was written
+05.12.2024 5:11:42 ShowWorksheet was Clicked
+05.12.2024 5:11:42 Worksheet was written
+05.12.2024 5:14:03 Clicked Close Window
+05.12.2024 5:14:03 Window is closed
+05.12.2024 5:17:10 Clicked OldFileButton
+05.12.2024 5:17:10 Try to read old file...
+05.12.2024 5:17:10 Success read old file
+05.12.2024 5:17:10 Successful application launch
+05.12.2024 5:17:10 Try to read Excel file
+05.12.2024 5:17:14 Successful Data Read
+05.12.2024 5:17:31 Clicked Close Window
+05.12.2024 5:17:31 Window is closed
+05.12.2024 5:20:42 Clicked OldFileButton
+05.12.2024 5:20:42 Try to read old file...
+05.12.2024 5:20:42 Success read old file
+05.12.2024 5:20:42 Successful application launch
+05.12.2024 5:20:42 Try to read Excel file
+05.12.2024 5:20:46 Successful Data Read
+05.12.2024 5:20:50 try to change selection in WorksheetsNames
+05.12.2024 5:20:50 Seccessful change selection in WorksheetsNames
+05.12.2024 5:20:52 RequestButton1 was Clicked
+05.12.2024 5:20:52 Successful written answer
+05.12.2024 5:22:08 RequestButton2 was Clicked
+05.12.2024 5:22:08 Successful written answer
+05.12.2024 5:22:26 RequestButton3 was Clicked
+05.12.2024 5:22:26 Successful written answer
+05.12.2024 5:22:37 RequestButton4 was Clicked
+05.12.2024 5:22:37 Successful written answer
+05.12.2024 5:23:29 Clicked Close Window
+05.12.2024 5:23:29 Window is closed

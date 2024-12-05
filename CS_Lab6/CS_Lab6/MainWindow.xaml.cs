@@ -28,7 +28,7 @@ namespace CS_Lab6
                 "\nЗапрос3 - Держатель с \nминимальными начислениями\n(включая отрицательные)" +
                 "\nЗапрос4 - Держатель с \nмаксимальными начислениями";
 
-            ChangeVisible(false, ShowWorksheet, delItemButton, CorrectElemButton, AddElemButton, RequestButton1, RequestButton2, RequestButton3, RequestButton4, Reset);
+            ChangeVisible(false, ShowWorksheet, delItemButton, CorrectElemButton, AddElemButton, RequestButton1, RequestButton2, RequestButton3, RequestButton4, Reset, SaveButton);
             ChangeVisible(false, startIndexTextBox, RowsCountTextBox, ID_forDel, CorrectIDTextBox, rawItemTextBox, AddTextBox1, AddTextBox2, AddTextBox3, AddTextBox4, AddTextBox5);
             ChangeVisible(false, ColoumsNamesComboBox, WorksheetsNames);
             ChangeVisible(false, OutputLabel, LeftLabel1, LeftLabel2, LeftLabel3, LeftLabel4, LeftLabel5, LeftLabel6, LeftLabel7, LeftLabel8, LeftLabel9, LeftLabel10, LeftLabel11, LeftLabel12, referenceLabel);
@@ -70,15 +70,18 @@ namespace CS_Lab6
                 case "Поступления":
                     action3();
                     break;
+                default:
+                    OutputTextBox.Text = "Maybe you need to choose worksheet(right-top)";
+                    break;
             }
         }
 
         private void PrintWorksheet(int startIndex, int rowsCount)
         {
             Switcher(WorksheetsNames.Text,
-                () => DebugPrint(ExcelDataBase.ShowDataBase(excelDataBase.GetAccount(), startIndex, rowsCount)),
-                () => DebugPrint(ExcelDataBase.ShowDataBase(excelDataBase.GetExchangeRate(), startIndex, rowsCount)),
-                () => DebugPrint(ExcelDataBase.ShowDataBase(excelDataBase.GetAccrual(), startIndex, rowsCount)));
+                () => DebugPrint(ExcelDataBase.ToString(excelDataBase.accounts, startIndex, rowsCount)),
+                () => DebugPrint(ExcelDataBase.ToString(excelDataBase.exchangeRates, startIndex, rowsCount)),
+                () => DebugPrint(ExcelDataBase.ToString(excelDataBase.accruals, startIndex, rowsCount)));
         }
 
         
@@ -122,7 +125,7 @@ namespace CS_Lab6
                     () => excelDataBase.DelElemInExchangeRates(int.Parse(ID_forDel.Text)),
                     () => excelDataBase.DelElemInAccrual(int.Parse(ID_forDel.Text)));
 
-                AddToProtocol("Seccessful delete element");
+                AddToProtocol("Successful delete element");
             }
             catch
             {
@@ -150,7 +153,7 @@ namespace CS_Lab6
 
         private void WorksheetsNames_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            //AddToProtocol("WorksheetsNames was clicked");
+            AddToProtocol("try to change selection in WorksheetsNames");
 
             try
             {
@@ -159,7 +162,7 @@ namespace CS_Lab6
                     ColoumsNamesComboBox.Items.Clear();
                     Switcher(WorksheetsNames.SelectedItem.ToString().Substring(38),
                         () => {
-                            foreach (string item in excelDataBase.GetAccountNames())
+                            foreach (string item in excelDataBase.accountNames)
                                 ColoumsNamesComboBox.Items.Add(item);
                             ChangeVisible(false, AddTextBox4, AddTextBox5);
                             LeftLabel8.Content = "ID";
@@ -167,7 +170,7 @@ namespace CS_Lab6
                             LeftLabel10.Content = "Дата открытия вклада";
                         },
                         () => {
-                            foreach (string item in excelDataBase.GetExchangeRateNames())
+                            foreach (string item in excelDataBase.exchangeRateNames)
                                 ColoumsNamesComboBox.Items.Add(item);
                             ChangeVisible(true, AddTextBox4);
                             ChangeVisible(false, AddTextBox5);
@@ -177,7 +180,7 @@ namespace CS_Lab6
                             LeftLabel11.Content = "Полное наименование";
                         },
                         () => {
-                            foreach (string item in excelDataBase.GetAccrualNames())
+                            foreach (string item in excelDataBase.accrualNames)
                                 ColoumsNamesComboBox.Items.Add(item);
                             ChangeVisible(true, AddTextBox4, AddTextBox5);
                             LeftLabel8.Content = "ID";
@@ -188,12 +191,12 @@ namespace CS_Lab6
                         });
                 }
 
-                //AddToProtocol("WorksheetsNames was clicked");
+                AddToProtocol("Seccessful change selection in WorksheetsNames");
             }
             catch
             {
-                OutputTextBox.Text = "Cant Create WorksheetsNames items";
-                AddToProtocol("Cant Create WorksheetsNames items");
+                OutputTextBox.Text = "Cant change selection in WorksheetsNames";
+                AddToProtocol("Cant change selection in WorksheetsNames");
                 return;
             }
 
@@ -254,26 +257,72 @@ namespace CS_Lab6
 
         private void RequestButton4_Click(object sender, RoutedEventArgs e)
         {
-            DebugPrint(excelDataBase.HighestAccruedAccountHolder());
+            AddToProtocol("RequestButton4 was Clicked");
+            try
+            {
+                DebugPrint(excelDataBase.HighestAccruedAccountHolder());
+                AddToProtocol("Successful written answer");
+            }
+            catch
+            {
+                OutputTextBox.Text = "Can't complete the request";
+                AddToProtocol("Can't complete the request");
+                return;
+            }           
         }
 
         private void RequestButton3_Click(object sender, RoutedEventArgs e)
         {
-            DebugPrint(excelDataBase.TheMostLostAccountHolder());
+            AddToProtocol("RequestButton3 was Clicked");
+            try
+            {
+                DebugPrint(excelDataBase.TheMostLostAccountHolder());
+                AddToProtocol("Successful written answer");
+            }
+            catch
+            {
+                OutputTextBox.Text = "Can't complete the request";
+                AddToProtocol("Can't complete the request");
+                return;
+            }
         }
 
         private void RequestButton2_Click(object sender, RoutedEventArgs e)
-        {
-            DebugPrint(excelDataBase.IncomeCurrencies());
+        {          
+            AddToProtocol("RequestButton2 was Clicked");
+            try
+            {
+                DebugPrint(excelDataBase.IncomeCurrencies());
+                AddToProtocol("Successful written answer");
+            }
+            catch
+            {
+                OutputTextBox.Text = "Can't complete the request";
+                AddToProtocol("Can't complete the request");
+                return;
+            }
         }
 
         private void RequestButton1_Click(object sender, RoutedEventArgs e)
         {
             DebugPrint(excelDataBase.CountAccrualsForAllCur());
+            AddToProtocol("RequestButton1 was Clicked");
+            try
+            {
+                DebugPrint(excelDataBase.CountAccrualsForAllCur());
+                AddToProtocol("Successful written answer");
+            }
+            catch
+            {
+                OutputTextBox.Text = "Can't complete the request";
+                AddToProtocol("Can't complete the request");
+                return;
+            }
         }
 
         private void NewFileButton_Click(object sender, RoutedEventArgs e)
         {
+            AddToProtocol("Successful application launch");
             AddToProtocol("Clicked NewFileButton");
             Open1();
         }
@@ -295,6 +344,7 @@ namespace CS_Lab6
 
             else AddToProtocol("Old file is not found");
 
+            AddToProtocol("Successful application launch");
             Open1();
 
 
@@ -312,18 +362,20 @@ namespace CS_Lab6
                 excelDataBase = new ExcelDataBase(Path.GetFullPath(@"..\..\data\LR6-var13.xls"), Path.GetFullPath(@"..\..\data\LR6-var13.xlsx"));
                 MessageLabel.Content = "Successful Data Read";
 
+                ChangeVisible(true, ShowWorksheet, delItemButton, CorrectElemButton, AddElemButton, RequestButton1, RequestButton2, RequestButton3, RequestButton4, Reset, SaveButton);
+                ChangeVisible(true, startIndexTextBox, RowsCountTextBox, ID_forDel, CorrectIDTextBox, rawItemTextBox, AddTextBox1, AddTextBox2, AddTextBox3, AddTextBox4, AddTextBox5);
+                ChangeVisible(true, ColoumsNamesComboBox, WorksheetsNames);
+                ChangeVisible(true, OutputLabel, LeftLabel1, LeftLabel2, LeftLabel3, LeftLabel4, LeftLabel5, LeftLabel6, LeftLabel7, LeftLabel8, LeftLabel9, LeftLabel10, LeftLabel11, LeftLabel12, referenceLabel);
+
                 AddToProtocol("Successful Data Read");
             }
             catch (Exception ex)
             {
-                AddToProtocol("Unsuccessful Data Read");
-                MessageLabel.Content = ex;
+                AddToProtocol("Troubles with file");
+                MessageLabel.Content = "Troubles with file";
             }
 
-            ChangeVisible(true, ShowWorksheet, delItemButton, CorrectElemButton, AddElemButton, RequestButton1, RequestButton2, RequestButton3, RequestButton4, Reset);
-            ChangeVisible(true, startIndexTextBox, RowsCountTextBox, ID_forDel, CorrectIDTextBox, rawItemTextBox, AddTextBox1, AddTextBox2, AddTextBox3, AddTextBox4, AddTextBox5);
-            ChangeVisible(true, ColoumsNamesComboBox, WorksheetsNames);
-            ChangeVisible(true, OutputLabel, LeftLabel1, LeftLabel2, LeftLabel3, LeftLabel4, LeftLabel5, LeftLabel6, LeftLabel7, LeftLabel8, LeftLabel9, LeftLabel10, LeftLabel11, LeftLabel12, referenceLabel);
+
         }
 
         public void AddToProtocol(string text)
@@ -339,7 +391,12 @@ namespace CS_Lab6
             startIndexTextBox.Text = 0.ToString();
             RowsCountTextBox.Text = 10.ToString();
 
-            AddToProtocol("Seccessful reset");
+            AddToProtocol("Successful reset");
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            excelDataBase.Save(Path.GetFullPath(@"..\..\data\LR6-var13.xlsx"));
         }
     }
 }
